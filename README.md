@@ -1,6 +1,12 @@
 # Sample Application using NodeJS, Sequelize, MySQL
 This is a sample nodejs application exposing REST APIs
 
+## Pre-reqs
+- Install MariaDB
+- Create Database **blog_db**
+- Create Database user: **appuser**
+- Grant all privileges for **appuser** on **blog_db**
+
 ## Setup
 - Install nodejs
 
@@ -38,6 +44,10 @@ npm install sequelize mysql2 --save
 
 ## ORM
 To setup database tables for this application, perform these tasks:
+
+### Update configuration
+- Update **development** profile with Database user credentials
+- Database user is **appuser**
 
 ### Generate Models:
 - Generate *blog_users* model
@@ -95,7 +105,7 @@ npm start
 http://hostname:8080/api/blog_users
 ```
 
--- Payload
+-- **Payload**
 
 ```
 {
@@ -125,7 +135,7 @@ http://hostname:8080/api/blog_users/<id>
 http://hostname:8080/api/blog_users/<id>
 ```
 
--- Payload
+-- **Payload**
 
 ```
 {
