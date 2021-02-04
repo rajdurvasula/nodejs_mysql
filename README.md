@@ -2,6 +2,9 @@
 This is a sample nodejs application exposing REST APIs
 
 ## Pre-reqs
+- Update OS packages
+- Install Development Tools
+- Install git
 - Install MariaDB
 - Create Database **blog_db**
 - Create Database user: **appuser**
