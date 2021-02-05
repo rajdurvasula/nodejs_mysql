@@ -74,3 +74,52 @@ exports.findAll = (req, res) => {
 		});
 	});
 };
+// Update Blog post
+exports.update = (req, res) => {
+        const id = req.params.id;
+
+        BlogPosts.update(req.body, {
+                where: { id: id }
+        })
+        .then(num => {
+                if (num == 1) {
+                        res.send({
+                                message: `Updated Blog post with id: ${id}`
+                        });
+                } else {
+                        res.send({
+                                message: `Cannot update Blog post with id: ${id}`
+                        });
+                }
+        })
+        .catch(err => {
+                res.status(500).send({
+                        message: "Error updating Blog post with id: "+id
+                });
+        });
+};
+// Delete Blog post
+exports.delete = (req, res) => {
+        const id = req.params.id;
+
+        BlogPosts.destroy({
+                where: { id: id }
+        })
+        .then(num => {
+                if (num == 1) {
+                        res.send({
+                                message: `Deleted Blog post with id: ${id}`
+                        });
+                } else {
+                        res.send({
+                                message: `Cannot delete Blog post with id: ${id}`
+                        });
+                }
+        })
+        .catch(err => {
+                res.send({
+                        message: "Error deleting Blog post with id: "+id
+                });
+        });
+};
+

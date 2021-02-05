@@ -3,7 +3,7 @@
     "username": "appuser",
     "password": "ek470oJ05dj057465137lh00",
     "database": "blog_db",
-    "host": "ip-172-31-3-124.ap-southeast-1.compute.internal",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

@@ -20,4 +20,8 @@ module.exports = (app) => {
 	app.get("/api/blog_users/:id/posts", blogPostsController.findByUser);
 	// Retrieve all posts
 	app.get("/api/blog_posts", blogPostsController.findAll);
+	// Update post
+	app.put("/api/blog_posts/:id", blogPostsController.update);
+	// Delete post
+	app.delete("/api/blog_posts/:id", blogPostsController.delete);
 };
