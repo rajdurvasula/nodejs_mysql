@@ -154,3 +154,40 @@ http://hostname:8080/api/blog_users/<id>
 http://hostname:8080/api/blog_users/<id>
 ```
 
+- Create a Blog post for a Blog user
+-- Use HTTP POST
+
+```
+http://hostname:8080/api/blog_users/<id>/posts
+```
+
+-- **Payload**
+
+```
+{
+  "title": "Lord of the Rings: Fellowship of the Ring",
+  "description": "A team of men join hands to protect the one ring that could bring doom for humanity.",
+  "pub_date": "2021-02-05"
+}
+```
+
+- Get all Blog posts
+-- Use HTTP GET
+
+```
+http://hostname:8080/api/blog_posts
+```
+
+- Update Blog post of a Blog user
+-- Use HTTP PUT
+
+```
+http://hostname:8080/api/blog_posts/<id>
+```
+
+- Delete Blog post of a Blog user
+-- Use HTTP DELETE
+
+```
+http://hostname:8080/api/blog_posts/<id>
+```
