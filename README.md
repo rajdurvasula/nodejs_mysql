@@ -10,7 +10,7 @@ This is a sample nodejs application exposing REST APIs
 - Create Database user: **appuser**
 - Grant all privileges for **appuser** on **blog_db**
 
-## Setup
+## Development Setup
 - Install nodejs
 
 > Change to Project directory, perform these tasks:
@@ -50,7 +50,12 @@ To setup database tables for this application, perform these tasks:
 
 ### Update configuration
 - Update **development** profile with Database user credentials
-- Database user is **appuser**
+- Database user needs to be changed. replace **USER**
+- Database password needs to be changed. replace **PASSWORD**
+- Database host needs to be changed. replace **DBHOST**
+>**NOTE:**
+>- MariaDB host can be a RDS Instance
+>- MariaDB host can be a EC2 Instance
 
 ### Generate Models:
 - Generate *blog_users* model
@@ -91,8 +96,25 @@ sequelize model:generate --name blog_posts --attributes title:string,description
 ```
 sequelize db:migrate
 ```
+## Deployment steps
+- Clone this Repo
+- Go to Dir: `nodejs_mysql`
+- Install dependencies
+```
+npm install
+```
+- Copy test.service to /etc/systemd/system/
+- Reload systemd Daemon
+```
+systemctl daemon-reload
+```
+- Enable and Start service
+```
+systemctl start test
+systemctl enable test
+```
 
-## REST Service
+## Local testing of REST Service
 - Start service
 
 ```
@@ -117,25 +139,32 @@ http://hostname:8080/api/blog_users
 }
 ```
 
+-- **curl command**
+
+```
+curl http://localhost:8080/api/blog_users -X POST -H "Content-type: application/json" -H "Accept: application/json" -d "{\"user_id\": \"some_user\", \"email_id\": \"some_user@example.com\"}"
+```
+
+
 - Get all Blog users
 -- Use HTTP GET
 
 ```
-http://hostname:8080/api/blog_users
+curl http://hostname:8080/api/blog_users -H "Accept: application/json"
 ```
 
 - Get a Blog user
 -- Use HTTP GET
 
 ```
-http://hostname:8080/api/blog_users/<id>
+curl http://hostname:8080/api/blog_users/1 -H "Accept: application/json"
 ```
 
 - Update a Blog user
 -- Use HTTP PUT
 
 ```
-http://hostname:8080/api/blog_users/<id>
+curl http://hostname:8080/api/blog_users/1 -X PUT -H "Content-type: application/json" -H "Accept: application/json" -d "{\"user_id\": \"some_user\", \"email_id\": \"some_user@sample.com\"}"
 ```
 
 -- **Payload**
@@ -151,14 +180,14 @@ http://hostname:8080/api/blog_users/<id>
 -- Use HTTP DELETE
 
 ```
-http://hostname:8080/api/blog_users/<id>
+curl http://hostname:8080/api/blog_users/1 -X DELETE
 ```
 
 - Create a Blog post for a Blog user
 -- Use HTTP POST
 
 ```
-http://hostname:8080/api/blog_users/<id>/posts
+curl http://hostname:8080/api/blog_users/1/posts -X POST -H "Content-type: application/json" -H "Accept: application/json" -d "{\"title\": \"Lord of the Rings: Fellowship of the Ring\", \"description\": \"A team of men join hands to protect the one ring that could bring doom for humanity.\", \"pub_date\": \"2021-02-05\"}"
 ```
 
 -- **Payload**
@@ -175,19 +204,19 @@ http://hostname:8080/api/blog_users/<id>/posts
 -- Use HTTP GET
 
 ```
-http://hostname:8080/api/blog_posts
+curl http://hostname:8080/api/blog_posts -H "Accept: application/json"
 ```
 
 - Update Blog post of a Blog user
 -- Use HTTP PUT
 
 ```
-http://hostname:8080/api/blog_posts/<id>
+curl http://hostname:8080/api/blog_posts/1 -H "Accept: application/json"
 ```
 
 - Delete Blog post of a Blog user
 -- Use HTTP DELETE
 
 ```
-http://hostname:8080/api/blog_posts/<id>
+curl http://hostname:8080/api/blog_posts/1 -X DELETE
 ```
