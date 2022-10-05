@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "appuser",
-    "password": "ek470oJ05dj057465137lh00",
+    "username": "USER",
+    "password": "PASSWORD",
     "database": "blog_db",
-    "host": "localhost",
+    "host": "DBHOST",
     "dialect": "mysql"
   },
   "test": {
