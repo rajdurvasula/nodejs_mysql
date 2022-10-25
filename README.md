@@ -58,16 +58,22 @@ To setup database tables for this application, perform these tasks:
 >- MariaDB host can be a EC2 Instance
 
 ### Generate Models:
+- Initialize *sequelize-cli*
+
+```
+npx sequelize-cli init
+```
+
 - Generate *blog_users* model
 
 ```
-sequelize model:generate --name blog_users --attributes user_id:string,email_id:string
+npx sequelize-cli model:generate --name blog_users --attributes user_id:string,email_id:string
 ```
 
 - Generate *blog_posts* model
 
 ```
-sequelize model:generate --name blog_posts --attributes title:string,description:string,pub_date:date
+npx sequelize-cli model:generate --name blog_posts --attributes title:string,description:string,pub_date:date
 ```
 
 - Update the **associate** function in *models/blog_users.js*
@@ -94,7 +100,7 @@ sequelize model:generate --name blog_posts --attributes title:string,description
 - Generate Database tables
 
 ```
-sequelize db:migrate
+npx sequelize-cli db:migrate
 ```
 ## Deployment steps
 - Clone this Repo
